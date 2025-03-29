@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRIATURAS SUPER PODEROSAS</title>
+        <script src="./js/mokepon.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <section id="seleccionar-mascota">
+            <h1 class="titulo">CRIATURAS SUPER PODEROSAS</h1>
+
+            <h2 class="subtitulo">Elige tu Mascota:</h2>
+
+            <div class="tarjetas">
+                <!-- Primera fila (3 criaturas) -->
+                <input type="radio" name="mascota" id="hipodoge">
+                <label class="tarjeta-de-mokepon" for="hipodoge">
+                    <p>Hipodoge</p>
+                    <img src="./assets/hipobodike.png" alt="Hipodoge">
+                </label>
+                
+                <input type="radio" name="mascota" id="capipepo">
+                <label class="tarjeta-de-mokepon" for="capipepo">
+                    <p>Capipepo</p>
+                    <img src="assets/capipo.png" alt="Capipepo">
+                </label>
+                
+                <input type="radio" name="mascota" id="ratigueya">
+                <label class="tarjeta-de-mokepon" for="ratigueya">
+                    <p>Ratigueya</p>
+                    <img src="assets/descarga.png" alt="Ratigueya">
+                </label>
+            
+                <!-- Segunda fila (3 criaturas) -->
+                <input type="radio" name="mascota" id="hynodre">
+                <label class="tarjeta-de-mokepon" for="hynodre">
+                    <p>hynodre</p>
+                    <img src="assets/Hynodre.png" alt="Hynodre">
+                </label>
+            
+                <input type="radio" name="mascota" id="srpentauro">
+                <label class="tarjeta-de-mokepon" for="srpentauro">
+                    <p>Srpentauro</p>
+                    <img src="assets/SEPENtauro.png" alt="Srpentauro">
+                </label>
+            
+                <input type="radio" name="mascota" id="wkong">
+                <label class="tarjeta-de-mokepon" for="wkong">
+                    <p>Wkong BABY</p>
+                    <img src="assets/mono titi.png" alt="Wkong Baby">
+                </label>
+            </div>
+
+            <button id="boton-mascota">Seleccionar</button>
+        </section>
+
+
+        <section id="seleccionar-ataque">
+            <h1 class="titulo">Mokepon</h1>
+            <h2 class="subtitulo">Elige tu Ataque:</h2>
+            
+            <div>
+                <button id="boton-fuego" class="boton-ataque">Fuego 🔥</button>
+                <button id="boton-agua" class="boton-ataque">Agua 💧</button>
+                <button id="boton-tierra" class="boton-ataque">Tierra 🌱</button>
+            </div>
+
+
+            <div id="mensajes">
+                <p id="resultado">Mucha Suerte!</p>
+
+                <section id="reiniciar">
+                    <button id="boton-reiniciar">Reiniciar</button>
+                </section>
+            </div>
+
+            <div class="ataques">
+                <div>
+                    <p id="vidas-jugador">3</p>
+                    <p id="mascota-jugador"></p>
+                    <p id="ataques-del-jugador"></p>
+                </div>
+
+                <div>
+                    <p id="vidas-enemigo">3</p>
+                    <p id="mascota-enemigo"></p>
+                    <p id="ataques-del-enemigo"></p>
+                </div>                
+            </div>
+        </section>
+    </body>
+</html>
