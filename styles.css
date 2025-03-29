@@ -210,3 +210,74 @@ input:checked + label.tarjeta-de-mokepon {
         height: 150px;
     }
 }
+
+/* Alertas */
+.alerta {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff3333;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.alerta.mostrar {
+    opacity: 1;
+}
+
+/* Animaciones de ataque */
+.boton-ataque {
+    transition: all 0.3s ease;
+}
+
+.boton-ataque.ataque-activo {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px gold;
+}
+
+/* Animaciones de golpe */
+.golpe {
+    animation: golpe 0.5s;
+}
+
+@keyframes golpe {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+/* Estilos para mostrar las mascotas en combate */
+#mascota-jugador, #mascota-enemigo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #03045e;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.ataques {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    text-align: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#ataques-del-jugador, #ataques-del-enemigo {
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgba(189, 224, 254, 0.7);
+    border-radius: 10px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

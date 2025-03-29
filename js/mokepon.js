@@ -5,6 +5,7 @@ let ataqueEnemigo
 
 let vidasJugador = 3
 let vidasEnemigo = 3
+let mascotaJugadorSeleccionada = null
 
 function iniciarJuego(){
 
@@ -28,31 +29,32 @@ function iniciarJuego(){
 
     let botonReiniciar = document.getElementById("boton-reiniciar")
     botonReiniciar.addEventListener("click",reiniciarJuego)
+
+    const inputsMascotas = document.querySelectorAll('input[name="mascota"]');
+    inputsMascotas.forEach(input => {
+        input.addEventListener('change', (e) => {
+            mascotaJugadorSeleccionada = e.target.id;
+
+        });
+    });
+
 }
 
 function seleccionarMascotaJugador(){
 
+    if (!mascotaJugadorSeleccionada) {
+        mostrarAlerta("⚠️ ¡Debes seleccionar una mascota!");
+        return;  // Detiene la función si no hay selección
+    }
+        
     let sectionSeleccionarMascota= document.getElementById("seleccionar-mascota")
     sectionSeleccionarMascota.style.display = "none"
 
     let sectionSeleccionarAtaque= document.getElementById("seleccionar-ataque")
     sectionSeleccionarAtaque.style.display = "flex"
 
-    let hipodogeSeleccionado = document.getElementById("hipodoge").checked
-    let capipepoSeleccionado = document.getElementById("capipepo").checked
-    let ratigueyaSeleccionado = document.getElementById("ratigueya").checked
-
-    let spanMascotaJugador = document.getElementById("mascota-jugador")
-
-    if (hipodogeSeleccionado){
-        spanMascotaJugador.innerHTML = "Hipodoge"
-    }else if(capipepoSeleccionado){
-        spanMascotaJugador.innerHTML = "Capipepo"
-    }else if(ratigueyaSeleccionado){
-        spanMascotaJugador.innerHTML = "Ratigueya"
-    }else{
-        alert("Debes seleccionar una Mascota")
-    }
+    let spanMascotaJugador = document.getElementById("mascota-jugador");
+    spanMascotaJugador.innerHTML = document.querySelector(`label[for="${mascotaJugadorSeleccionada}"] p`).textContent;
 
     seleccionarMascotaEmemigo()
 }
@@ -105,22 +107,20 @@ function combate(){
 
     if(ataqueEnemigo == ataqueJugador){
         crearMensaje("EMPATE")
-    }else if(ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA"){
+    }else if(
+        (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") ||
+        (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") ||
+        (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA")
+    ){
         crearMensaje("GANASTE")
-        vidasEnemigo --
+        vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
-    }else if(ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO"){
-        crearMensaje("GANASTE")
-        vidasEnemigo --
-        spanVidasEnemigo.innerHTML = vidasEnemigo
-    }else if(ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA"){
-        crearMensaje("GANASTE")
-        vidasEnemigo --
-        spanVidasEnemigo.innerHTML = vidasEnemigo
+        animarGolpe('enemigo')
     }else{
         crearMensaje("PERDISTE")
-        vidasJugador --
+        vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
+        animarGolpe('jugador')
     }
 
     revisarVidas()
@@ -173,3 +173,29 @@ function aleatorio(min, max)
 }
 
 window.addEventListener("load", iniciarJuego)
+
+function mostrarAlerta(mensaje) {
+    const alerta = document.createElement('div');
+    alerta.classList.add('alerta');
+    alerta.textContent = mensaje;
+    document.body.appendChild(alerta);
+    
+    setTimeout(() => {
+        alerta.classList.add('mostrar');
+    }, 10);
+    
+    setTimeout(() => {
+        alerta.classList.remove('mostrar');
+        setTimeout(() => {
+            document.body.removeChild(alerta);
+        }, 300);
+    }, 3000);
+}
+
+function animarGolpe(objetivo) {
+    const elemento = document.getElementById(`mascota-${objetivo}`);
+    elemento.classList.add('golpe');
+    setTimeout(() => {
+        elemento.classList.remove('golpe');
+    }, 500);
+}
